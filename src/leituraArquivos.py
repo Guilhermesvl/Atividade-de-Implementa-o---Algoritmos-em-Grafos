@@ -31,14 +31,15 @@ def leituraGrafo(nome_arquivo):
         print('Vértices: ', vertices)
         print('Arestas: ', arestas)
 
-        #ma = MA(vertices, arestas)
-        #la = LA(vertices, arestas)
+
         return vertices, arestas
         
     
     except FileNotFoundError:
         print("Erro: Arquivo não encontrado.")
+        return None, None
     except ValueError as e:
         print("Erro:", e)
+        return None, None
 
 

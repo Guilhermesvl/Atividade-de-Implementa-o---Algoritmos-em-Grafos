@@ -1,4 +1,5 @@
 from ma import MA
+from la import LA
 
 class Menu:
     def __init__(self, vertices, arestas):
@@ -12,7 +13,7 @@ class Menu:
         print('Antes de representarmos, me diga ')
         print('o Grafo é direcionado? (Sim/não): ')
 
-        direcionado = str(input().lower())
+        direcionado = str(input().lower().replace('~', ''))
         
         if direcionado == 'sim':
             return True
@@ -36,6 +37,12 @@ class Menu:
             ma = MA(self.vertices, self.arestas, self.direcionado())
             ma.addAdjacencia()
             ma.mostraMatriz()
+
+        if entrada == 'ii':
+
+            la = LA(self.vertices, self.arestas, self.direcionado())
+            la.addAdjacencia()
+            la.mostraLista()
 
        
     def insercaoRemocao(self):

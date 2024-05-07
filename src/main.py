@@ -11,11 +11,12 @@ while True:
 
         menu = Menu(vertices, arestas)
 
-        #menu.direcionado()
         menu.representacao()
         menu.insercaoRemocao()
         menu.verificacoes()
         menu.arvores()
         menu.algoritmos()
+
+        break
 
 
