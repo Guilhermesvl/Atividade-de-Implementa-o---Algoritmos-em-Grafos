@@ -18,5 +18,5 @@ class LA:
         for i in range(len(self.vertices)):
             print(f'{i + 1}: ', end = ' ')
             for j in self.la[i]:
-                print(f'{j+1} -> ',)
+                print(f'{j+1} -> ', end = '')
             print()
