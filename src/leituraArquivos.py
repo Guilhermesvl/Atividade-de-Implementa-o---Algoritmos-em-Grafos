@@ -31,6 +31,8 @@ def leituraGrafo(nome_arquivo):
         print('Vértices: ', vertices)
         print('Arestas: ', arestas)
 
+        #ma = MA(vertices, arestas)
+        #la = LA(vertices, arestas)
         return vertices, arestas
         
     

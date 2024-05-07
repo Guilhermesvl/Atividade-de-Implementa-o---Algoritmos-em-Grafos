@@ -1,6 +1,24 @@
-from leituraArquivos import leituraGrafo
+from ma import MA
 
 class Menu:
+    def __init__(self, vertices, arestas):
+        self.vertices = vertices
+        self.arestas = arestas
+
+
+    def direcionado(self):
+        print()
+        print('-'*34)
+        print('Antes de representarmos, me diga ')
+        print('o Grafo é direcionado? (Sim/não): ')
+
+        direcionado = str(input().lower())
+        
+        if direcionado == 'sim':
+            return True
+        else:
+            return False
+        
 
     def representacao(self):
         print()
@@ -12,6 +30,13 @@ class Menu:
         print('     (iii) Representação gráfica')
         print('-'*34)
         entrada = str(input())
+
+        if entrada == 'i':
+
+            ma = MA(self.vertices, self.arestas, self.direcionado())
+            ma.addAdjacencia()
+            ma.mostraMatriz()
+
        
     def insercaoRemocao(self):
         print()

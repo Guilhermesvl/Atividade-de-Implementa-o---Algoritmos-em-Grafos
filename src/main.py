@@ -1,16 +1,17 @@
 from menu import Menu
 from leituraArquivos import leituraGrafo
 
-
 while True:
-    
+
     print()
     nomeArquivo = str(input("Digite o nome do arquivo que contém o grafo: "))
-    grafo = leituraGrafo(nomeArquivo)
+    vertices, arestas = leituraGrafo(nomeArquivo)
 
-    if grafo is not None:
-        menu = Menu()
+    if vertices is not None and arestas is not None:
 
+        menu = Menu(vertices, arestas)
+
+        #menu.direcionado()
         menu.representacao()
         menu.insercaoRemocao()
         menu.verificacoes()
