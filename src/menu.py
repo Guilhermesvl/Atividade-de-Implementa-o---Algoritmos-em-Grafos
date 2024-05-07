@@ -1,6 +1,5 @@
 from ma import MA
 from la import LA
-import networkx as nx
 from representacaoGrafica import RepresentacaoGrafica
 
 class Menu:
