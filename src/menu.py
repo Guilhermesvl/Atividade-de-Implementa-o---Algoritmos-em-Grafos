@@ -1,6 +1,9 @@
+from leituraArquivos import leituraGrafo
+
 class Menu:
 
     def representacao(self):
+        print()
         print('-'*34)
         print('Representações ')
         print('Digite: ')
@@ -9,10 +12,9 @@ class Menu:
         print('     (iii) Representação gráfica')
         print('-'*34)
         entrada = str(input())
-
-
        
     def insercaoRemocao(self):
+        print()
         print('-'*24)
         print('Remoções e Inserções: ')
         print('Digite: ')
@@ -39,6 +41,7 @@ class Menu:
             entrada2 = str(input())
 
     def verificacoes(self):
+        print()
         print('-'*34)
         print('Verificações: ')
         print('Digite: ')
@@ -54,6 +57,7 @@ class Menu:
 
 
     def arvores(self):
+        print()
         print('-'*34)
         print('Árvores: ')
         print('Digite: ')
@@ -71,6 +75,7 @@ class Menu:
         print('-'*34)
 
     def algoritmos(self):
+        print()
         print('-'*34)
         print('Algoritmos: ')
         print('Digite: ')
