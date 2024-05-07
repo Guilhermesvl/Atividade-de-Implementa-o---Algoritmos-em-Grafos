@@ -1,5 +1,7 @@
 from ma import MA
 from la import LA
+import networkx as nx
+from representacaoGrafica import RepresentacaoGrafica
 
 class Menu:
     def __init__(self, vertices, arestas):
@@ -43,6 +45,11 @@ class Menu:
             la = LA(self.vertices, self.arestas, self.direcionado())
             la.addAdjacencia()
             la.mostraLista()
+
+        if entrada == 'iii':
+            representacao = RepresentacaoGrafica(self.vertices, self.arestas, self.direcionado())
+            representacao.addAdjacencia()
+            representacao.mostra()
 
        
     def insercaoRemocao(self):
