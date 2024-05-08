@@ -76,10 +76,15 @@ class Menu:
                     print('-'*34)
                     entrada2 = str(input())
 
+                    manipulaAresta = ManipulacaoArquivo(nomeArquivo)
+                    
+                    if entrada2 == '1':
+                        manipulaAresta.removerAresta()
+                        manipulaAresta.leituraGrafo()
 
                     if entrada2 == '2':
-                        adicionarAresta = ManipulacaoArquivo(nomeArquivo)
-                        adicionarAresta.escreverAresta()
+                        manipulaAresta.escreverAresta()
+                        manipulaAresta.leituraGrafo()
                         
                         
 

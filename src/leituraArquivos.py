@@ -68,3 +68,24 @@ class ManipulacaoArquivo:
 
         with open(caminho_arquivo, 'w') as arquivo:
             arquivo.write(conteudo[:indiceA] + novasArestas)
+        
+
+    def removerAresta(self):
+        diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
+        caminho_arquivo = os.path.join(diretorio_atual, "..", "testes", self.nomeArquivo)
+
+        with open(caminho_arquivo, 'r') as arquivo:
+            conteudo = arquivo.read()
+        
+        removeAresta = str(input('Digite a aresta que deseja remover (x,y): '))
+        
+        indiceA = conteudo.find('A = {')
+        arestas = conteudo[indiceA:].strip()
+
+        arestas = arestas.replace(removeAresta + ',', '') 
+        arestas = arestas.replace(',' + removeAresta, '')
+
+        with open(caminho_arquivo, 'w') as arquivo:
+            arquivo.write(conteudo[:indiceA] + arestas)
+        
+        
