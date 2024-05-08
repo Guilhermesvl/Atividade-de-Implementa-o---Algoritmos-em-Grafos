@@ -6,6 +6,21 @@ class ManipulacaoArquivo:
         self.nomeArquivo = nomeArquivo
 
     def leituraGrafo(self):
+        """
+        Lê os vértices e arestas de um arquivo de texto e os retorna.
+
+            * retornando None, caso a leitura não seja bem
+            executada, para que o programa permita que o Menu
+            continue em execução até o usuário digitar um .txt válido
+
+
+        :return: uma tupla separada para os vértices e arestas do grafo.
+        :rtype: tuple
+        :param b: O segundo número a ser somado.
+        :raises FileNotFoundError: Se o arquivo não for encontrado.
+        :raises ValueError: Se o formato do arquivo for inválido.
+        """
+
         diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
         caminho_arquivo = os.path.join(diretorio_atual, "..", "testes", self.nomeArquivo)
         
@@ -35,7 +50,6 @@ class ManipulacaoArquivo:
             print('Vértices: ', vertices)
             print('Arestas: ', arestas)
 
-
             return vertices, arestas
             
         
@@ -45,46 +59,68 @@ class ManipulacaoArquivo:
         except ValueError as e:
             print("Erro:", e)
             return None, None
+        
 
 
     def escreverAresta(self):
+        """
+        Adiciona uma nova aresta ao arquivo de grafo.
+
+        :raises FileNotFoundError: Se o arquivo não for encontrado.
+        """
+         
         diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
         caminho_arquivo = os.path.join(diretorio_atual, "..", "testes", self.nomeArquivo)
         
         novaAresta = str(input('Insira a(s) nova(s) Aresta(s) separadas por vírgula (x,y):  '))
         
+        #Abre o arquivo e armazena o conteúdo do arquivo na variável
         with open(caminho_arquivo, 'r') as arquivo:
             conteudo = arquivo.read()
 
+        #Encontrando a parte do arquivo que corresponde as Arestas
         indiceA = conteudo.find('A = {')
         arestas = conteudo[indiceA:].strip()
 
+        #Remove os dois últimos elementos: };
         arestas = arestas[:-2]
 
+        #Escreve as novas Arestas
         if arestas.endswith(','):
             novasArestas = arestas +  novaAresta + '};'
         else:
             novasArestas = arestas + ',' + novaAresta + '};'
 
+        #Abre o arquivo para escrever
         with open(caminho_arquivo, 'w') as arquivo:
             arquivo.write(conteudo[:indiceA] + novasArestas)
         
 
     def removerAresta(self):
+        """
+        Remove uma aresta de cada vez do arquivo de grafo.
+
+        :raises FileNotFoundError: Se o arquivo não for encontrado.
+        """
+        
         diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
         caminho_arquivo = os.path.join(diretorio_atual, "..", "testes", self.nomeArquivo)
 
+        #Abre o arquivo e armazena o conteúdo do arquivo na variável        
         with open(caminho_arquivo, 'r') as arquivo:
             conteudo = arquivo.read()
         
         removeAresta = str(input('Digite a aresta que deseja remover (x,y): '))
         
+        #Encontrando a parte do arquivo que corresponde as Arestas
         indiceA = conteudo.find('A = {')
         arestas = conteudo[indiceA:].strip()
 
+        #Encontrando a aresta para apagar
         arestas = arestas.replace(removeAresta + ',', '') 
         arestas = arestas.replace(',' + removeAresta, '')
 
+        #Abre o arquivo para escrever 
         with open(caminho_arquivo, 'w') as arquivo:
             arquivo.write(conteudo[:indiceA] + arestas)
         

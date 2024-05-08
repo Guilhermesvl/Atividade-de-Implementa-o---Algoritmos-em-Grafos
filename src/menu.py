@@ -10,6 +10,12 @@ class Menu:
 
 
     def direcionado(self):
+        """
+        Pergunta ao usuário se o grafo é direcionado e retorna booleano.
+
+        :return: True se o grafo é direcionado, False caso não seja.
+        :rtype: bool
+        """
         print()
         print('-'*34)
         print('Antes de representarmos, me diga ')
@@ -24,6 +30,11 @@ class Menu:
         
 
     def representacao(self):
+        """
+        Permite que o usuário escolha entre as três tipos de representação sugeridas do grafo.
+        
+        :return: Nenhum retorno.
+        """
         print()
         print('-'*34)
         print('Representações ')
@@ -53,6 +64,11 @@ class Menu:
 
        
     def insercaoRemocao(self, nomeArquivo):
+        """
+        Permite que o usuário escolha fazer alterações nos vértices e arestas do arquivo texto.
+        
+        :return: Nenhum retorno.
+        """
         entradaAUX = str(input('Deseja fazer alterações nos vértices e/ou arestas? ').lower()
                              .replace('~', ''))
         if entradaAUX == 'sim':
