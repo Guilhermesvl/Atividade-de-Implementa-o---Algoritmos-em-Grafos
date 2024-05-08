@@ -163,4 +163,35 @@ class ManipulacaoArquivo:
         with open(caminho_arquivo, 'w') as arquivo:
             arquivo.write(conteudo[:indiceV] + novosVertices + arestas + ' ') 
 
+    
+    def removerVertice(self):
+        """
+        Remove um vértice de cada vez do arquivo de grafo.
+
+        :raises FileNotFoundError: Se o arquivo não for encontrado.
+        """
         
+        diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
+        caminho_arquivo = os.path.join(diretorio_atual, "..", "testes", self.nomeArquivo)
+
+        #Abre o arquivo e armazena o conteúdo do arquivo na variável        
+        with open(caminho_arquivo, 'r') as arquivo:
+            conteudo = arquivo.read()
+        
+        removeVertice = str(input('Digite o vértice que deseja remover x: '))
+        
+        #Encontrando a parte do arquivo que corresponde as Arestas
+        indiceA = conteudo.find('A = {')
+        arestas = conteudo[indiceA:].strip()
+
+        #Encontrando a parte do arquivo que corresponde as Arestas
+        indiceV = conteudo.find('V = {')
+        vertices = conteudo[:indiceA-1].strip()
+
+        #Encontrando o vértice para apagar
+        vertices = vertices.replace(removeVertice + ',', '') 
+        vertices = vertices.replace(',' + removeVertice, '')
+
+        #Abre o arquivo para escrever 
+        with open(caminho_arquivo, 'w') as arquivo:
+            arquivo.write(conteudo[:indiceV] + vertices + conteudo[:indiceA] + arestas)

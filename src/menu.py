@@ -96,14 +96,14 @@ class Menu:
                     
                     if entrada2 == '1':
                         manipulaAresta.removerAresta()
-                        manipulaAresta.leituraGrafo()
+                        vertices, arestas = manipulaAresta.leituraGrafo()
+                        self.representacao()
 
                     if entrada2 == '2':
                         manipulaAresta.escreverAresta()
-                        manipulaAresta.leituraGrafo()
-                        
-                        
-
+                        vertices, arestas = manipulaAresta.leituraGrafo()
+                        self.representacao()
+                            
                 if entrada == 'ii':
                     print()
                     print("Você escolheu manipular Vértices")
@@ -116,18 +116,13 @@ class Menu:
                     manipulaVertice = ManipulacaoArquivo(nomeArquivo)
 
                     if entrada2 == '1':
-                        #manipulaVertice.removerVertice()
+                        manipulaVertice.removerVertice()
                         manipulaVertice.leituraGrafo()
 
                     if entrada2 == '2':
                         manipulaVertice.escreverVertice()
                         manipulaVertice.leituraGrafo()
                         
-
-
-
-
-
                 if entrada == 'iii':
                     print('Pŕoxima Operação: ')
                     break
