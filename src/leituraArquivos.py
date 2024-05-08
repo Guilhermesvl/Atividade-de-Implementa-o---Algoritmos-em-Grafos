@@ -124,4 +124,43 @@ class ManipulacaoArquivo:
         with open(caminho_arquivo, 'w') as arquivo:
             arquivo.write(conteudo[:indiceA] + arestas)
         
+
+    def escreverVertice(self):
+        """
+        Adiciona novo(s) vértice(s) ao arquivo de grafo.
+
+        :raises FileNotFoundError: Se o arquivo não for encontrado.
+        """
+         
+        diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
+        caminho_arquivo = os.path.join(diretorio_atual, "..", "testes", self.nomeArquivo)
+        
+        novoVertice = str(input('Insira o(s) novo(s) Vértice(s) separados por vírgula x,:  '))
+        
+        #Abre o arquivo e armazena o conteúdo do arquivo na variável
+        with open(caminho_arquivo, 'r') as arquivo:
+            conteudo = arquivo.read()
+
+        #Encontrando a parte do arquivo que corresponde os Vértices
+        indiceA = conteudo.find('A = {')
+        arestas = conteudo[indiceA:].strip()
+
+        indiceV = conteudo.find('V = {')
+        vertices = conteudo[:indiceA-1].strip()
+
+        #Remove os dois últimos elementos: };
+        vertices = vertices[:-2]
+
+        #Escreve as novos Vértices
+        if vertices.endswith(','):
+            novosVertices = vertices +  novoVertice + '}; '
+        else:
+            novosVertices = vertices + ',' + novoVertice + '}; '
+
+        print(conteudo[:indiceV] + novosVertices)
+
+        #Abre o arquivo para escrever
+        with open(caminho_arquivo, 'w') as arquivo:
+            arquivo.write(conteudo[:indiceV] + novosVertices + arestas + ' ') 
+
         

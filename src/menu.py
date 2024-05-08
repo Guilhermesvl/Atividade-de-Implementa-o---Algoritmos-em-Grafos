@@ -113,6 +113,20 @@ class Menu:
                     print('-'*34)
                     entrada2 = str(input())
 
+                    manipulaVertice = ManipulacaoArquivo(nomeArquivo)
+
+                    if entrada2 == '1':
+                        #manipulaVertice.removerVertice()
+                        manipulaVertice.leituraGrafo()
+
+                    if entrada2 == '2':
+                        manipulaVertice.escreverVertice()
+                        manipulaVertice.leituraGrafo()
+                        
+
+
+
+
 
                 if entrada == 'iii':
                     print('Pŕoxima Operação: ')
