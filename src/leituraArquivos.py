@@ -9,16 +9,10 @@ class ManipulacaoArquivo:
         """
         Lê os vértices e arestas de um arquivo de texto e os retorna.
 
-            * retornando None, caso a leitura não seja bem
-            executada, para que o programa permita que o Menu
-            continue em execução até o usuário digitar um .txt válido
-
-
-        :return: uma tupla separada para os vértices e arestas do grafo.
+        :return: Uma tupla separada para os vértices e arestas do grafo.
         :rtype: tuple
-        :param b: O segundo número a ser somado.
         :raises FileNotFoundError: Se o arquivo não for encontrado.
-        :raises ValueError: Se o formato do arquivo for inválido.
+        :raises ValueError: Se o formato do arquivo for inválido ou se houver vértices ou arestas duplicadas.
         """
 
         diretorio_atual = os.path.dirname(__file__)  # Diretório atual do script
@@ -32,7 +26,9 @@ class ManipulacaoArquivo:
             vertices_match = re.search(r'V\s*=\s*{([^}]*)}', conteudo)
             if vertices_match:
                 vertices_str = vertices_match.group(1)
-                vertices = [int(v) for v in vertices_str.split(',')]
+                vertices = list(set([int(v) for v in vertices_str.split(',')]))
+                if len(vertices) != len(vertices_str.split(',')):
+                    raise ValueError("Vértices duplicados encontrados")
             else:
                 raise ValueError("Formato de vértices inválido")
 
@@ -42,10 +38,20 @@ class ManipulacaoArquivo:
                 arestas_str = arestas_match.group(1)
                 arestas = re.findall(r'\((\d+),(\d+)\)', arestas_str)
                 arestas = [(int(a[0]), int(a[1])) for a in arestas]
+                
+                # Verificar se todas as arestas são únicas
+                if len(set(arestas)) != len(arestas):
+                    raise ValueError("Arestas duplicadas encontradas")
+
+                # Verificar se todos os vértices nas arestas foram definidos
+                vertices_set = set(vertices)
+                for a in arestas:
+                    if a[0] not in vertices_set or a[1] not in vertices_set:
+                        raise ValueError("Aresta contém vértice não definido")
+
             else:
                 raise ValueError("Formato de arestas inválido")
 
-            
             print("Informações lidas: ")
             print('Vértices: ', vertices)
             print('Arestas: ', arestas)
@@ -59,7 +65,6 @@ class ManipulacaoArquivo:
         except ValueError as e:
             print("Erro:", e)
             return None, None
-        
 
 
     def escreverAresta(self):
@@ -179,14 +184,16 @@ class ManipulacaoArquivo:
             conteudo = arquivo.read()
         
         removeVertice = str(input('Digite o vértice que deseja remover x: '))
-        
-        #Encontrando a parte do arquivo que corresponde as Arestas
-        indiceA = conteudo.find('A = {')
-        arestas = conteudo[indiceA:].strip()
+        #Encontrando a parte do arquivo que corresponde aos Vértices
+        indiceVInicio = conteudo.find('V = {')
+        indiceVFim = conteudo.find('}', indiceVInicio)
 
         #Encontrando a parte do arquivo que corresponde as Arestas
-        indiceV = conteudo.find('V = {')
-        vertices = conteudo[:indiceA-1].strip()
+        indiceAInicio = conteudo.find('A = {')
+        indiceVFim = conteudo.find('}', indiceAInicio)
+
+        arestas = conteudo[indiceAInicio:indiceAInicio + 1]           
+        vertices = conteudo[indiceVInicio:indiceVFim + 1]
 
         #Encontrando o vértice para apagar
         vertices = vertices.replace(removeVertice + ',', '') 
@@ -194,4 +201,4 @@ class ManipulacaoArquivo:
 
         #Abre o arquivo para escrever 
         with open(caminho_arquivo, 'w') as arquivo:
-            arquivo.write(conteudo[:indiceV] + vertices + conteudo[:indiceA] + arestas)
+            arquivo.write(conteudo[:indiceVInicio] + vertices + conteudo[indiceAInicio:])

@@ -4,7 +4,7 @@ class MA:
     def __init__ (self, vertices, arestas, direcionado):
         self.vertices = vertices
         self.arestas = arestas
-        self.ma = [[0] * len(vertices) for _ in range(len(vertices))]
+        self.ma = [[0] * len(self.vertices) for _ in range(len(self.vertices))]
         self.direcionado = direcionado
 
 

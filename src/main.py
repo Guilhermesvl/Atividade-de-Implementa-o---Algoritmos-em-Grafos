@@ -12,7 +12,7 @@ while True:
 
         menu = Menu(vertices, arestas)
 
-        menu.representacao()
+        menu.representacao(vertices, arestas)
         menu.insercaoRemocao(nomeArquivo)
         menu.verificacoes()
         menu.arvores()

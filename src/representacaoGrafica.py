@@ -16,6 +16,6 @@ class RepresentacaoGrafica:
     def mostra(self):
         nx.draw(self.representacao, with_labels=True, node_size=500, node_color='skyblue', font_size=12, font_weight='bold', arrowsize=20)
     
-        plt.show()
+        plt.show(block = False)
 
 

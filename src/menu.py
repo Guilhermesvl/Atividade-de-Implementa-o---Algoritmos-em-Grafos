@@ -2,6 +2,7 @@ from ma import MA
 from la import LA
 from representacaoGrafica import RepresentacaoGrafica
 from leituraArquivos import ManipulacaoArquivo
+import matplotlib.pyplot as plt 
 
 class Menu:
     def __init__(self, vertices, arestas):
@@ -19,7 +20,7 @@ class Menu:
         print()
         print('-'*34)
         print('Antes de representarmos, me diga ')
-        print('o Grafo é direcionado? (Sim/não): ')
+        print('o Grafo é direcionado? (Sim/Não): ')
 
         direcionado = str(input().lower().replace('~', ''))
         
@@ -29,10 +30,15 @@ class Menu:
             return False
         
 
-    def representacao(self):
+    def representacao(self, vertices, arestas):
         """
         Permite que o usuário escolha entre as três tipos de representação sugeridas do grafo.
-        
+
+        :param vertices: Lista de vértices do grafo.
+        :param arestas: Lista de arestas do grafo.
+            * Para que sempre receba os vértices e arestas atualizados, 
+                    caso o arquivo .txt seja modificado
+
         :return: Nenhum retorno.
         """
         print()
@@ -47,28 +53,32 @@ class Menu:
 
         if entrada == 'i':
 
-            ma = MA(self.vertices, self.arestas, self.direcionado())
+            ma = MA(vertices, arestas, self.direcionado())
             ma.addAdjacencia()
             ma.mostraMatriz()
 
         if entrada == 'ii':
 
-            la = LA(self.vertices, self.arestas, self.direcionado())
+            la = LA(vertices, arestas, self.direcionado())
             la.addAdjacencia()
             la.mostraLista()
 
         if entrada == 'iii':
-            representacao = RepresentacaoGrafica(self.vertices, self.arestas, self.direcionado())
+            plt.close()
+            representacao = RepresentacaoGrafica(vertices, arestas, self.direcionado())
             representacao.addAdjacencia()
             representacao.mostra()
 
-       
+    
+
+
     def insercaoRemocao(self, nomeArquivo):
         """
         Permite que o usuário escolha fazer alterações nos vértices e arestas do arquivo texto.
         
         :return: Nenhum retorno.
         """
+        print("\n\n")
         entradaAUX = str(input('Deseja fazer alterações nos vértices e/ou arestas? ').lower()
                              .replace('~', ''))
         if entradaAUX == 'sim':
@@ -96,13 +106,18 @@ class Menu:
                     
                     if entrada2 == '1':
                         manipulaAresta.removerAresta()
-                        vertices, arestas = manipulaAresta.leituraGrafo()
-                        self.representacao()
+                        if encerrouInsercao():
+                            vertices, arestas = manipulaAresta.leituraGrafo()
+                            if vertices is not None and arestas is not None:
+                                self.representacao(vertices, arestas)
 
                     if entrada2 == '2':
                         manipulaAresta.escreverAresta()
-                        vertices, arestas = manipulaAresta.leituraGrafo()
-                        self.representacao()
+                        if encerrouInsercao():
+                            vertices, arestas = manipulaAresta.leituraGrafo()
+                            print(vertices, arestas)
+                            if vertices is not None and arestas is not None:
+                                self.representacao(vertices, arestas)
                             
                 if entrada == 'ii':
                     print()
@@ -117,11 +132,17 @@ class Menu:
 
                     if entrada2 == '1':
                         manipulaVertice.removerVertice()
-                        manipulaVertice.leituraGrafo()
+                        if  encerrouInsercao():
+                            vertices, arestas = manipulaVertice.leituraGrafo()
+                            if vertices is not None and arestas is not None:
+                                self.representacao(vertices, arestas)
 
                     if entrada2 == '2':
                         manipulaVertice.escreverVertice()
-                        manipulaVertice.leituraGrafo()
+                        if encerrouInsercao():
+                            vertices, arestas = manipulaVertice.leituraGrafo()
+                            if vertices is not None and arestas is not None:
+                                self.representacao(vertices, arestas)
                         
                 if entrada == 'iii':
                     print('Pŕoxima Operação: ')
@@ -186,8 +207,22 @@ class Menu:
 
         print('-'*34)
 
+def encerrouInsercao():
+    '''
+    Verifica se as inserções foram encerradas pelo usuário.
+        *Foi criada para não ter que digitar a mesma coisa quatro vezes
 
-        
+    :return: True se as inserções foram encerradas, False caso contrário.
+    :rtype: bool
+    
+    '''
+    print()
+    encerrou = str(input('As inserções já acabaram? (Sim/Não): ').lower().replace('~', ''))
+
+    if encerrou == 'nao':
+        return False
+    else: 
+        return True   
 
     
 
