@@ -21,3 +21,9 @@ class MA:
         print('Matriz de Adjacência: ')
         for i in range(len(self.vertices)):
             print(self.ma[i])
+
+    def getVertices(self):
+        return self.vertices
+    
+    def getArestas(self):
+        return self.arestas

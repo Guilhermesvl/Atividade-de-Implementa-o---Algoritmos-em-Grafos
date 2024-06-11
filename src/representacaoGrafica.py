@@ -18,4 +18,9 @@ class RepresentacaoGrafica:
     
         plt.show(block = False)
 
-
+    def getVertices(self):
+        return self.vertices
+    
+    
+    def getArestas(self):
+        return self.arestas

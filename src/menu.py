@@ -8,6 +8,7 @@ class Menu:
     def __init__(self, vertices, arestas):
         self.vertices = vertices
         self.arestas = arestas
+        self.formato = None
 
 
     def direcionado(self):
@@ -56,20 +57,23 @@ class Menu:
             ma = MA(vertices, arestas, self.direcionado())
             ma.addAdjacencia()
             ma.mostraMatriz()
+            self.formato = ma
+           
 
         if entrada == 'ii':
 
             la = LA(vertices, arestas, self.direcionado())
             la.addAdjacencia()
             la.mostraLista()
+            self.formato = la
 
         if entrada == 'iii':
             plt.close()
             representacao = RepresentacaoGrafica(vertices, arestas, self.direcionado())
             representacao.addAdjacencia()
             representacao.mostra()
+            self.formato = representacao
 
-    
 
 
     def insercaoRemocao(self, nomeArquivo):
@@ -90,7 +94,7 @@ class Menu:
                 print('Digite: ')
                 print('     (i) Arestas')
                 print('     (ii) Vértices')
-                print('     (iii) Encerrar operação')
+                print('     (0) Encerrar operação')
                 entrada = str(input())
 
                 if entrada == 'i':
@@ -115,7 +119,6 @@ class Menu:
                         manipulaAresta.escreverAresta()
                         if encerrouInsercao():
                             vertices, arestas = manipulaAresta.leituraGrafo()
-                            print(vertices, arestas)
                             if vertices is not None and arestas is not None:
                                 self.representacao(vertices, arestas)
                             
@@ -144,27 +147,87 @@ class Menu:
                             if vertices is not None and arestas is not None:
                                 self.representacao(vertices, arestas)
                         
-                if entrada == 'iii':
-                    print('Pŕoxima Operação: ')
+                if entrada == '0':
+                    print('Pŕoxima Sessão... ')
                     break
 
     def verificacoes(self):
+        while True:
+            print()
+            print('-'*34)
+            print('Verificações: ')
+            print('Digite: ')
+            print('     (i) Quantidade de vértices')
+            print('     (ii) Quantidade de arestas')
+            print('     (iii) Grau de um vértice')
+            print('     (iv) O grafo é conexo?')
+            print('     (v) O grafo é fortemente conexo?')
+            print('     (vi) O grafo é bipartido?')        
+            print('     (vii) O grafo é Euleriano?')
+            print('     (viii) O grafo é Hamiltoniano?')
+            print('     (ix) O grafo é Euleriano?')
+            print('     (x) O grafo possui ciclos?')
+            print('     (vii) O grafo é planar?')
+            print('     (0) Encerrar sessão')
+            print('-'*34)
+            entrada3 = str(input())
+
+            
+
+            if entrada3 == 'i':
+                if isinstance(self.formato, MA):
+                    print('Este grafo possui ',len(self.formato.getVertices()),' vértices.')
+                elif isinstance(self.formato, LA):
+                    print('Este grafo possui ',len(self.formato.getVertices()),' vértices.') 
+                elif isinstance(self.formato, RepresentacaoGrafica):
+                    print('Este grafo possui ',len(self.formato.getVertices()),' vértices.')
+
+            if entrada3 == 'ii':
+                if isinstance(self.formato, MA):
+                    print('Este grafo possui ',len(self.formato.getArestas()),' arestas.')
+                elif isinstance(self.formato, LA):
+                    print('Este grafo possui ',len(self.formato.getArestas()),' arestas.') 
+                elif isinstance(self.formato, RepresentacaoGrafica):
+                    print('Este grafo possui ',len(self.formato.getArestas()),' arestas.')
+
+           
+            if entrada3 == '0':
+                print('Pŕoxima Sessão...')
+                break
+    
+    def listar(self):
         print()
         print('-'*34)
-        print('Verificações: ')
+        print('Listar: ')
         print('Digite: ')
-        print('     (i) Quantidade de vértices')
-        print('     (ii) Quantidade de arestas')
-        print('     (iii) Grau de um vértice')
-        print('     (iv) O grafo é conexo?')
-        print('     (v) O grafo é fortemente conexo?')
-        print('     (vi) O grafo possui ciclos?')
-        print('     (vii) O grafo é Euleriano?')
-        print('-'*34)
-        entrada3 = str(input())
+        print('     (i) Vértices')
+        print('     (ii) Arestas')
+        print('     (iii) Componentes Conexas')
+        print('     (iv) Um caminho Euleriano')
+        print('     (v) Um caminho Hamiltoniano')
+        print('     (vi) Vértices de articulação')
+        print('     (vii) Arestas ponte')
+        entrada4 = str(input())
+   
+    def gerar(self):
+        print()
+        print('-' * 34)
+        print('Gerar: ')
+        print('Digite: ')
+        print('     (i) Matriz de adjacência')
+        print('     (ii) Lista de adjacência')
+        print('     (iii) Árvore de profundidade')
+        print('     (iv) Árvore de largura')
+        print('     (v) Árvore geradora mínima')
+        print('     (vi) Ordem topológica')
+        print('     (vii) Caminho mínimo entre dois vértices')
+        print('     (viii) Fluxo máximo')
+        print('     (ix) Fechamento transitivo')
+        entrada5 = str(input())
 
-
-    def arvores(self):
+'''
+   (Versão antiga do trabalho)
+   def arvores(self):
         print()
         print('-'*34)
         print('Árvores: ')
@@ -206,6 +269,8 @@ class Menu:
             entrada8 = input()
 
         print('-'*34)
+''' 
+    
 
 def encerrouInsercao():
     '''

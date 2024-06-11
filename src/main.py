@@ -15,8 +15,14 @@ while True:
         menu.representacao(vertices, arestas)
         menu.insercaoRemocao(nomeArquivo)
         menu.verificacoes()
+        menu.listar()
+        menu.gerar()
+        '''
+        (Versão antiga do trabalho)
         menu.arvores()
         menu.algoritmos()
+        '''
+        
 
         break
 

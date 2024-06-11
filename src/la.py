@@ -20,3 +20,10 @@ class LA:
             for j in self.la[i]:
                 print(f'{j+1} -> ', end = '')
             print()
+
+    def getVertices(self):
+        return self.vertices
+    
+    
+    def getArestas(self):
+        return self.arestas
