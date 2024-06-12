@@ -25,5 +25,17 @@ class MA:
     def getVertices(self):
         return self.vertices
     
+    
     def getArestas(self):
         return self.arestas
+    
+    
+    def getGrau(self):
+        grauVertice = int(input("\n Digite o vértice que deseja consultar o grau: "))
+
+        grau = 0
+        for adjacencias in self.ma[grauVertice-1]:
+            if adjacencias == 1:
+                grau+=1
+            
+        return grau

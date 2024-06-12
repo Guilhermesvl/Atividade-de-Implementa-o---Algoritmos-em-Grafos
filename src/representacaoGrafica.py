@@ -24,3 +24,9 @@ class RepresentacaoGrafica:
     
     def getArestas(self):
         return self.arestas
+
+    def getGrau(self):
+        grauVertice = int(input("\n Digite o vértice que deseja consultar o grau: "))
+        grau = grauVertice-1
+
+        return nx.degree(self.representacao, grau)

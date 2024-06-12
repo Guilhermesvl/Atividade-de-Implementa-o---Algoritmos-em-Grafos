@@ -27,3 +27,11 @@ class LA:
     
     def getArestas(self):
         return self.arestas
+    
+    
+    def getGrau(self):
+        grauVertice = int(input("\n Digite o vértice que deseja consultar o grau: "))
+       
+        grau = sum(1 for _ in self.la[grauVertice - 1])
+
+        return grau

@@ -176,21 +176,28 @@ class Menu:
 
             if entrada3 == 'i':
                 if isinstance(self.formato, MA):
-                    print('Este grafo possui ',len(self.formato.getVertices()),' vértices.')
+                    print('\nEste grafo possui ',len(self.formato.getVertices()),' vértices.')
                 elif isinstance(self.formato, LA):
-                    print('Este grafo possui ',len(self.formato.getVertices()),' vértices.') 
+                    print('\nEste grafo possui ',len(self.formato.getVertices()),' vértices.') 
                 elif isinstance(self.formato, RepresentacaoGrafica):
-                    print('Este grafo possui ',len(self.formato.getVertices()),' vértices.')
+                    print('\nEste grafo possui ',len(self.formato.getVertices()),' vértices.')
 
             if entrada3 == 'ii':
                 if isinstance(self.formato, MA):
-                    print('Este grafo possui ',len(self.formato.getArestas()),' arestas.')
+                    print('\nEste grafo possui ',len(self.formato.getArestas()),' arestas.')
                 elif isinstance(self.formato, LA):
-                    print('Este grafo possui ',len(self.formato.getArestas()),' arestas.') 
+                    print('\nEste grafo possui ',len(self.formato.getArestas()),' arestas.') 
                 elif isinstance(self.formato, RepresentacaoGrafica):
-                    print('Este grafo possui ',len(self.formato.getArestas()),' arestas.')
+                    print('\nEste grafo possui ',len(self.formato.getArestas()),' arestas.')
 
-           
+            if entrada3 == 'iii': 
+                if isinstance(self.formato, MA):
+                    print('\nEste vértice possui ',self.formato.getGrau(),' grau(s).')
+                elif isinstance(self.formato, LA):
+                    print('\nEste vértice possui ',self.formato.getGrau(),' grau(s).') 
+                elif isinstance(self.formato, RepresentacaoGrafica):
+                    print('\nEste vértice possui ',self.formato.getGrau(),' grau(s).')
+
             if entrada3 == '0':
                 print('Pŕoxima Sessão...')
                 break
