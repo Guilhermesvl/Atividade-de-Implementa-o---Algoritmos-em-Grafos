@@ -198,6 +198,12 @@ class Menu:
                 elif isinstance(self.formato, RepresentacaoGrafica):
                     print('\nEste vértice possui ',self.formato.getGrau(),' grau(s).')
 
+            if entrada3 == 'iv':
+                if isinstance(self.formato, MA):
+                    self.formato.DFS()
+
+
+
             if entrada3 == '0':
                 print('Pŕoxima Sessão...')
                 break
