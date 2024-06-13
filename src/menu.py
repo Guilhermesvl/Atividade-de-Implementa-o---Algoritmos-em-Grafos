@@ -203,6 +203,8 @@ class Menu:
                     self.formato.DFS()
                 if isinstance(self.formato, LA):
                     self.formato.BFS()
+                if isinstance(self.formato, RepresentacaoGrafica):
+                    self.formato.ehConexo()
 
 
             if entrada3 == '0':

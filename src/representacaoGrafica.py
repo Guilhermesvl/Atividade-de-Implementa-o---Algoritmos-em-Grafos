@@ -30,3 +30,17 @@ class RepresentacaoGrafica:
         grau = grauVertice-1
 
         return nx.degree(self.representacao, grau)
+    
+    def ehConexo(self):
+
+        if self.direcionado:
+            print("\nO grafo é direcionado, logo este teste não esta disponível")
+            return False
+
+        componente =  nx.number_connected_components(self.representacao)
+
+        if componente > 1:
+            print(f"\nO grafo não é conéxo, possui {componente} componentes.")
+            return False
+        
+        return True
