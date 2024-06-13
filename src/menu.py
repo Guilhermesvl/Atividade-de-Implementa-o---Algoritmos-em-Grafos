@@ -201,7 +201,8 @@ class Menu:
             if entrada3 == 'iv':
                 if isinstance(self.formato, MA):
                     self.formato.DFS()
-
+                if isinstance(self.formato, LA):
+                    self.formato.BFS()
 
 
             if entrada3 == '0':
